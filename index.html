@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bartek i Ewelina • 21.08.2026 • Warszawa • Pałac Żółwin</title>
+  <meta name="description" content="Wesele • 21.08.2026 • Warszawa • Pałac Żółwin • RSVP" />
+  <meta property="og:title" content="21.08.2026 • Warszawa • Pałac Żółwin" />
+  <meta property="og:description" content="Zapisz datę • RSVP" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:,">
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <div class="mark" aria-label="Monogram">
+        <span class="mark__line"></span>
+        <span class="mark__text" id="monogram">B.M&nbsp;×&nbsp;E.M</span>
+        <span class="mark__line"></span>
+      </div>
+
+      <nav class="topnav" aria-label="Primary" style="justify-content:center;">
+        <a href="#rsvp" class="topnav__link" data-i18n="nav_rsvp">RSVP</a>
+        <a href="#details" class="topnav__link" data-i18n="nav_details">Szczegóły</a>
+        <a href="#faq" class="topnav__link" data-i18n="nav_faq">FAQ</a>
+      </nav>
+
+      <div class="lang">
+        <button class="lang__btn" type="button" data-lang="pl" aria-pressed="true">PL</button>
+        <button class="lang__btn" type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+<section id="rsvp" class="section section--alt">
+      <div class="wrap">
+        <div class="section__head">
+          <h2 class="h2" data-i18n="rsvp_title">RSVP</h2>
+          <p class="lead" data-i18n="rsvp_lead">
+            Dajcie znać, czy będziecie — zajmie to mniej niż minutę.
+          </p>
+        </div>
+
+        <div class="rsvp">
+          <form id="rsvpForm" class="form" method="POST" action="">
+            <div class="grid">
+              <label class="field">
+                <span class="field__label" data-i18n="form_name">Imię i nazwisko</span>
+                <input class="field__input" name="name" autocomplete="name" required />
+              </label>
+
+              <label class="field">
+                <span class="field__label" data-i18n="form_email">E-mail (opcjonalnie)</span>
+                <input class="field__input" type="email" name="email" autocomplete="email" />
+              </label>
+
+              <label class="field">
+                <span class="field__label" data-i18n="form_phone">Telefon (opcjonalnie)</span>
+                <input class="field__input" name="phone" autocomplete="tel" />
+              </label>
+
+              <div class="field" style="grid-column:1/-1;">
+  <span class="field__label" data-i18n="form_attendance">Obecność</span>
+  <div style="display:flex; gap:10px; margin-top:8px;">
+    <button type="button" class="btn rsvp-btn" data-value="yes">Będę</button>
+    <button type="button" class="btn btn--ghost rsvp-btn" data-value="no">Nie będzie mnie</button>
+    <input type="hidden" name="attendance" id="attendanceField" required />
+  </div>
+</div>
+
+              <label class="field">
+  <span class="field__label">Łącznie dorosłych</span>
+  <input class="field__input" type="number" name="guests_adults" min="0" max="10" value="1" required />
+</label>
+<label class="field">
+  <span class="field__label">Łącznie dzieci</span>
+  <input class="field__input" type="number" name="guests_children" min="0" max="10" value="0" />
+</label>
+
+              <label class="field">
+  <span class="field__label">Dieta</span>
+  <select class="field__input" name="diet">
+    <option value="standard">Standard</option>
+    <option value="wege">Wege</option>
+    <option value="vegan">Vegan</option>
+  </select>
+</label>
+
+              <label class="field field--full">
+  <span class="field__label" data-i18n="form_notes">Uwagi</span>
+  <textarea class="field__input field__textarea" name="notes" rows="4" placeholder="Np. alergie — prosimy o wypisanie konkretnych alergenów, potrzeba noclegu, wózek dziecięcy itd."></textarea>
+</label>
+            </div>
+
+            <input type="hidden" name="event_date" value="2026-08-21" />
+            <input type="hidden" name="event_city" value="Warszawa" />
+            <input type="hidden" name="event_venue" value="Pałac Żółwin" />
+            <input type="hidden" name="lang" id="langField" value="pl" />
+
+            <div class="form__actions">
+              <button class="btn" type="submit" data-i18n="form_submit">Wyślij RSVP</button>
+              
+            </div>
+
+            <div class="form__status" id="formStatus" role="status" aria-live="polite"></div>
+          </form>
+
+          <aside class="rsvp__side">
+            <div class="panel panel--tight">
+  <h3 class="h3" data-i18n="rsvp_side_title">Szybkie info</h3>
+  <ul class="bullets">
+    <li>Prosimy o odpowiedź do końca lutego.</li>
+    <li>Alergie i specjalne potrzeby prosimy wpisać w "Uwagi".</li>
+    <li>Zachęcamy do znalezienia opieki dla dzieci na ten dzień — dołączcie do nas i bawcie się do samego rana.</li>
+  </ul>
+</div>
+
+            <div class="panel panel--tight mt">
+              <h3 class="h3" data-i18n="contacts_title">Kontakt</h3>
+              <p class="muted" data-i18n="contacts_text">
+                Wstawcie tu numer/WhatsApp lub mail do szybkich pytań.
+              </p>
+              <p class="contacts">
+                <span class="contacts__k" data-i18n="contacts_k1">Telefon:</span> <span class="contacts__v" id="contactPhone">Ewelina: +48 515 754 720</span><br/>
+                <span class="contacts__k"> </span> <span class="contacts__v">Bartek: +48 784 032 813</span><br/>
+                <span class="contacts__k" data-i18n="contacts_k2">E-mail:</span> <span class="contacts__v" id="contactEmail">BEMajewscy@gmail.com</span>
+              </p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+<section id="details" class="section">
+      <div class="wrap">
+        <div class="section__head">
+          <h2 class="h2" data-i18n="details_title">Szczegóły</h2>
+          <p class="lead" data-i18n="details_lead">
+            Najważniejsze informacje w jednym miejscu — a my będziemy aktualizować stronę, gdy pojawią się nowe szczegóły.
+          </p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <h3 class="h3" data-i18n="details_when_title">Kiedy</h3>
+            <p class="card__big" id="dateShort">21.08.2026</p>
+            <p class="muted" data-i18n="details_when_text">Zapiszcie datę — plan dnia podeślemy bliżej wydarzenia.</p>
+          </article>
+
+          <article class="card">
+            <h3 class="h3" data-i18n="details_where_title">Gdzie</h3>
+            <p class="card__big">Pałac Żółwin</p>
+            <p class="muted" data-i18n="details_where_text">Warszawa i okolice. Około 30 minut od centrum Warszawy. Dokładne wskazówki dojazdu uzupełnimy wkrótce.</p>
+            <div class="card__actions">
+              <a class="link" id="mapsLink" target="_blank" rel="noopener" href="#" data-i18n="details_where_map">Otwórz mapę →</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3 class="h3" data-i18n="details_stay_title">Noclegi</h3>
+            <p class="muted">Proponujemy dwa podejścia:</p>
+            <ol class="muted" style="margin-top:8px;">
+              <li><strong>Przyjeżdżasz na dłużej?</strong> Zatrzymaj się w centrum Warszawy — wygodny dojazd w dniu przyjęcia.</li>
+              <li><strong>Wolisz być blisko Pałacu?</strong> Oto propozycje w zasięgu krótkiego dojazdu/spaceru.</li>
+            </ol>
+            <div style="margin-top:10px;">
+              <h4 class="h3" style="margin:6px 0 4px;">Opcja A — centrum Warszawy (dla dłuższego pobytu)</h4>
+              <ul class="muted">
+                <li><strong>Luksus:</strong> Hotel Bristol</li>
+                <li><strong>Mid-range:</strong> PURO Hotel Warsaw</li>
+                <li><strong>Budget:</strong> Mercure Warszawa Centrum</li>
+              </ul>
+              <h4 class="h3" style="margin:6px 0 4px;">Opcja B — blisko Pałacu Żółwin (dla krótszego wypadku)</h4>
+              <ul class="muted">
+                <li><strong>Luksus:</strong> Pałacowe pokoje / butikowy pensjonat</li>
+                <li><strong>Mid-range:</strong> Lokalny 3★ hotel / guesthouse</li>
+                <li><strong>Budget:</strong> Przytulne apartamenty / B&amp;B</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <div class="gallery" style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:16px;">
+  <img src="IMG_1968.JPG" style="width:100%; height:140px; object-fit:cover; border-radius:10px;" alt="photo1"/>
+  <img src="IMG_3370.JPEG" style="width:100%; height:140px; object-fit:cover; border-radius:10px;" alt="photo2"/>
+  <img src="IMG_7200.JPEG" style="width:100%; height:140px; object-fit:cover; border-radius:10px;" alt="photo3"/>
+</div>
+
+<div class="two">
+          <div class="panel">
+            <h3 class="h3" data-i18n="details_schedule_title">Plan (wstępnie)</h3>
+            <ul class="timeline">
+              <li><span class="t__time">16:00</span> <span class="t__text" data-i18n="schedule_2">Ceremonia</span></li>
+              <li><span class="t__time">17:00</span> <span class="t__text" data-i18n="schedule_3">Toast + życzenia</span></li>
+              <li><span class="t__time">18:00</span> <span class="t__text" data-i18n="schedule_4">Kolacja</span></li>
+              <li><span class="t__time">20:00</span> <span class="t__text" data-i18n="schedule_5">Zabawa do rana</span></li>
+            </ul>
+            <p class="muted small" data-i18n="details_schedule_note">
+              Godziny są orientacyjne — potwierdzimy finalną rozpiskę bliżej terminu.
+            </p>
+          </div>
+
+          <div class="panel">
+            <h3 class="h3" data-i18n="details_dresscode_title">Dress code</h3>
+            <p class="muted" data-i18n="details_dresscode_text">
+              Pałacowo-minimalistycznie: klasyka, stonowane kolory, eleganckie detale. Wyobraźcie sobie garden party z nutą brytyjskiej elegancji — kapelusze mile widziane (jak u British royalty).
+            </p>
+
+            <h3 class="h3 mt" data-i18n="details_gifts_title">Prezenty</h3>
+            <p class="muted" data-i18n="details_gifts_text">
+              Prosimy o koperty — bez kwiatów. Dziękujemy za zrozumienie.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+<section id="faq" class="section">
+      <div class="wrap">
+        <div class="section__head">
+          <h2 class="h2" data-i18n="faq_title">FAQ</h2>
+          <p class="lead" data-i18n="faq_lead">Najczęstsze pytania. Krótko i konkretnie.</p>
+        </div>
+
+        <div class="faq">
+  <details class="faq__item" open>
+    <summary>Czy będą dzieci?</summary>
+    <p>Ładnie zachęcamy do zostawienia dzieci (brak specjalnych atrakcji dla najmłodszych), decyzja należy do Was.</p>
+  </details>
+
+  <details class="faq__item">
+    <summary>Czy jest parking?</summary>
+    <p>Tak — dodamy dokładne wskazówki dojazdu i info o parkingu bliżej terminu.</p>
+  </details>
+
+  <details class="faq__item">
+    <summary>Do kiedy RSVP?</summary>
+    <p>Prosimy o potwierdzenie obecności do końca lutego.</p>
+  </details>
+
+</div>
+
+<footer class="footer">
+          <div class="footer__line"></div>
+          <p class="footer__text">
+            <span data-i18n="footer_made">Widzimy się</span>
+            <strong id="footerDate">21.08.2026</strong>
+            <span class="dot">•</span>
+            <span id="footerVenue">Pałac Żółwin</span>
+          </p>
+        </footer>
+      </div>
+    </section>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
