@@ -84,8 +84,12 @@ const I18N = {
     // New labels for adults and children counts
     form_guests_adults: "Łącznie dorosłych",
     form_guests_children: "Łącznie dzieci",
-    form_diet: "Dieta / alergie",
-    form_diet2: "Dieta (osoby towarzyszącej)",
+    // Update diet labels: the primary diet is now labelled "Moja dieta" and
+    // the partner's diet reflects the partner/plus‑one field. A new key
+    // `form_partner_name` is introduced for the partner's full name.
+    form_diet: "Moja dieta",
+    form_diet2: "Dieta Partnera/ki",
+    form_partner_name: "Imię i nazwisko Partnera/ki",
     form_notes: "Uwagi",
     form_submit: "Wyślij RSVP",
     // form_privacy removed (not used in markup)
@@ -179,8 +183,12 @@ const I18N = {
     // New labels for adults and children counts
     form_guests_adults: "Adults (total)",
     form_guests_children: "Children (total)",
-    form_diet: "Dietary / allergies",
-    form_diet2: "Dietary (plus-one)",
+    // Updated diet labels: the primary diet is labelled "My diet" and
+    // the partner's diet reflects the partner/plus‑one field. A new key
+    // `form_partner_name` is introduced for the partner's full name.
+    form_diet: "My diet",
+    form_diet2: "Partner's diet",
+    form_partner_name: "Partner's name",
     form_notes: "Notes",
     form_submit: "Send RSVP",
     // form_privacy removed (not used in markup)
@@ -249,7 +257,11 @@ function currentLang(){
 function setLang(lang){
   localStorage.setItem("lang", lang);
   document.documentElement.lang = lang;
-  $("#langField").value = lang;
+  // Only update the hidden language field if it exists. In the embedded
+  // Google Form variant there is no internal RSVP form, so #langField may
+  // be absent. Guard against null before accessing its value property.
+  const langFieldEl = document.getElementById('langField');
+  if(langFieldEl) langFieldEl.value = lang;
 
   // toggle buttons state
   $$(".lang__btn").forEach(btn => btn.setAttribute("aria-pressed", btn.dataset.lang === lang ? "true" : "false"));
@@ -333,12 +345,25 @@ function handleRSVP(){
     // convert certain values to human‑readable labels matching the sample
     // given by the couple (e.g. attendance options, diet names).
     const mapping = {
+      // Main guest's full name
       name: 'entry.1057752695',
+      // Attendance (yes/no)
       attendance: 'entry.98626208',
+      // Number of adults
       guests_adults: 'entry.898899753',
+      // Number of children
       guests_children: 'entry.633681487',
+      // Primary diet selection
       diet: 'entry.681235079',
+      // Partner/plus‑one diet selection
       diet2: 'entry.2116388700',
+      // Partner/plus‑one full name
+      partner_name: 'entry.1714425691',
+      // Optional phone number
+      phone: 'entry.1153744789',
+      // Optional email address
+      email: 'entry.1009133588',
+      // Additional comments / notes
       notes: 'entry.678744193'
     };
     const fd = new FormData(form);
@@ -348,10 +373,15 @@ function handleRSVP(){
       let out = val;
       // Convert boolean values to strings used in the Google Form
       if(key === 'attendance'){
-        out = (val === 'yes') ? 'Tak, będę / Yes, I will attend' : 'Nie będzie mnie / No, I cannot attend';
+        // Map attendance to the bilingual labels used in the Google Form
+        out = (val === 'yes') ? 'Tak, będę / Yes, I will attend' : 'Nie będzie mnie / I won’t be able to attend';
       } else if(key === 'diet' || key === 'diet2'){
+        // Map internal diet codes to the labels used in the Google Form. The
+        // new form uses English dietary labels (Standard / Vegetarian / Vegan)
+        // regardless of the site language, so "wege" should map to
+        // "Vegetarian".
         if(val === 'standard') out = 'Standard';
-        else if(val === 'wege') out = 'Wege';
+        else if(val === 'wege') out = 'Vegetarian';
         else if(val === 'vegan') out = 'Vegan';
       }
       params.append(mapping[key], out);

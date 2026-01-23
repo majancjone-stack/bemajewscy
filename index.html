@@ -88,101 +88,112 @@
 <h2 class="h2" data-i18n="rsvp_title">RSVP</h2>
 </div>
 <div class="rsvp">
-<form action="" class="form" id="rsvpForm" method="POST">
-<div class="grid">
-<label class="field">
-<span class="field__label" data-i18n="form_name">Imię i nazwisko</span>
-<input autocomplete="name" class="field__input" name="name" required=""/>
-</label>
-<label class="field">
-<span class="field__label" data-i18n="form_email">E-mail (opcjonalnie)</span>
-<input autocomplete="email" class="field__input" name="email" type="email"/>
-</label>
-<label class="field">
-<span class="field__label" data-i18n="form_phone">Telefon (opcjonalnie)</span>
-<input autocomplete="tel" class="field__input" name="phone"/>
-</label>
-<div class="field" style="grid-column:1/-1;">
-<span class="field__label" data-i18n="form_attendance">Obecność</span>
-<div style="display:flex; gap:10px; margin-top:8px;">
-        <!-- Both attendance buttons use the ghost style by default. The active state
-             is applied via the `.rsvp-btn.active` rule in CSS so only the selected
-             option gets the coloured background. -->
-        <button class="btn--ghost rsvp-btn" data-value="yes" type="button">Będę</button>
-        <button class="btn--ghost rsvp-btn" data-value="no" type="button">Nie będzie mnie</button>
-<input id="attendanceField" name="attendance" required="" type="hidden"/>
-</div>
-</div>
-<label class="field">
-<span class="field__label" data-i18n="form_guests_adults">Łącznie dorosłych</span>
-<input class="field__input" max="10" min="0" name="guests_adults" required="" type="number" value="1"/>
-</label>
-<label class="field">
-<span class="field__label" data-i18n="form_guests_children">Łącznie dzieci</span>
-<input class="field__input" max="10" min="0" name="guests_children" type="number" value="0"/>
-</label>
+  <!-- Custom RSVP form -->
+  <form action="" class="form" id="rsvpForm" method="POST">
+    <div class="grid">
+      <!-- Row 1: Guest name and primary diet -->
       <label class="field">
-        <!-- Translate the primary diet label -->
-        <span class="field__label" data-i18n="form_diet"></span>
+        <span class="field__label" data-i18n="form_name">Imię i nazwisko</span>
+        <input autocomplete="name" class="field__input" name="name" required="">
+      </label>
+      <label class="field">
+        <span class="field__label" data-i18n="form_diet">Moja dieta</span>
         <select class="field__input" name="diet">
           <option value="standard">Standard</option>
           <option value="wege">Wege</option>
           <option value="vegan">Vegan</option>
         </select>
       </label>
+      <!-- Row 2: Email and phone -->
       <label class="field">
-        <!-- Additional diet select for the plus‑one/family member -->
-        <span class="field__label" data-i18n="form_diet2"></span>
+        <span class="field__label" data-i18n="form_email">E-mail (opcjonalnie)</span>
+        <input autocomplete="email" class="field__input" name="email" type="email">
+      </label>
+      <label class="field">
+        <span class="field__label" data-i18n="form_phone">Telefon (opcjonalnie)</span>
+        <input autocomplete="tel" class="field__input" name="phone">
+      </label>
+      <!-- Row 3: Attendance (full width) -->
+      <div class="field" style="grid-column:1/-1;">
+        <span class="field__label" data-i18n="form_attendance">Obecność</span>
+        <div style="display:flex; gap:10px; margin-top:8px;">
+          <!-- Both attendance buttons use the ghost style by default. The active state
+               is applied via the `.rsvp-btn.active` rule in CSS so only the selected
+               option gets the coloured background. -->
+          <button class="btn--ghost rsvp-btn" data-value="yes" type="button" data-i18n="form_yes">Będę</button>
+          <button class="btn--ghost rsvp-btn" data-value="no" type="button" data-i18n="form_no">Nie będzie mnie</button>
+          <input id="attendanceField" name="attendance" required="" type="hidden">
+        </div>
+      </div>
+      <!-- Row 4: Adult and children counts -->
+      <label class="field">
+        <span class="field__label" data-i18n="form_guests_adults">Łącznie dorosłych</span>
+        <input class="field__input" min="0" max="10" name="guests_adults" type="number" value="1" required="">
+      </label>
+      <label class="field">
+        <span class="field__label" data-i18n="form_guests_children">Łącznie dzieci</span>
+        <input class="field__input" min="0" max="10" name="guests_children" type="number" value="0">
+      </label>
+      <!-- Row 5: Partner name and partner diet -->
+      <label class="field">
+        <span class="field__label" data-i18n="form_partner_name">Imię i nazwisko Partnera/ki</span>
+        <input class="field__input" name="partner_name" autocomplete="name">
+      </label>
+      <label class="field">
+        <span class="field__label" data-i18n="form_diet2">Dieta Partnera/ki</span>
         <select class="field__input" name="diet2">
           <option value="standard">Standard</option>
           <option value="wege">Wege</option>
           <option value="vegan">Vegan</option>
         </select>
       </label>
-<label class="field field--full">
-<span class="field__label" data-i18n="form_notes">Uwagi</span>
-<textarea class="field__input field__textarea" name="notes" placeholder="Np. alergie — prosimy o wypisanie konkretnych alergenów, potrzeba noclegu, wózek dziecięcy itd." rows="4"></textarea>
-</label>
-</div>
-<input name="event_date" type="hidden" value="2026-08-21"/>
-<input name="event_city" type="hidden" value="Warszawa"/>
-<input name="event_venue" type="hidden" value="Pałac Żółwin"/>
-<input id="langField" name="lang" type="hidden" value="pl"/>
-<div class="form__actions">
-<button class="btn" data-i18n="form_submit" type="submit">Wyślij RSVP</button>
-</div>
-<div aria-live="polite" class="form__status" id="formStatus" role="status"></div>
-</form>
-<aside class="rsvp__side">
-<div class="panel panel--tight">
-<h3 class="h3" data-i18n="rsvp_side_title">Szybkie info</h3>
-<ul class="bullets">
-  <!-- quick info items translated via i18n keys -->
-  <li data-i18n="rsvp_side_1"></li>
-  <!-- new quick info item asking guests to confirm the number of adults and children -->
-  <li data-i18n="rsvp_side_add"></li>
-  <li data-i18n="rsvp_side_2"></li>
-  <li data-i18n="rsvp_side_3"></li>
-</ul>
-</div>
-<div class="panel panel--tight mt">
-<h3 class="h3" data-i18n="contacts_title">Kontakt</h3>
-<p class="contacts">
-<div class="contacts__item">
-<span aria-hidden="true" class="contacts__icon">📞</span>
-<span class="contacts__label" data-i18n="contacts_k1">Telefon:</span>
-<span class="contacts__value" id="contactPhone">Ewelina: +48 515 754 720 · Bartek: +48 784 032 813</span>
-</div>
-<div class="contacts__item">
-<span aria-hidden="true" class="contacts__icon">✉️</span>
-<span class="contacts__label" data-i18n="contacts_k2">E-mail:</span>
-<a class="contacts__value" href="mailto:BEMajewscy@gmail.com" id="contactEmail">BEMajewscy@gmail.com</a>
-</div>
-</p>
-</div>
-</aside>
-</div>
-</div>
+      <!-- Row 6: Additional notes -->
+      <label class="field field--full">
+        <span class="field__label" data-i18n="form_notes">Uwagi</span>
+        <textarea class="field__input field__textarea" name="notes" rows="4" placeholder=""></textarea>
+      </label>
+    </div>
+    <!-- hidden metadata fields -->
+    <input name="event_date" type="hidden" value="2026-08-21">
+    <input name="event_city" type="hidden" value="Warszawa">
+    <input name="event_venue" type="hidden" value="Pałac Żółwin">
+    <input id="langField" name="lang" type="hidden" value="pl">
+    <!-- submit button -->
+    <div class="form__actions">
+      <button class="btn" data-i18n="form_submit" type="submit">Wyślij RSVP</button>
+    </div>
+    <div aria-live="polite" class="form__status" id="formStatus" role="status"></div>
+  </form>
+  <aside class="rsvp__side">
+  <div class="panel panel--tight">
+  <h3 class="h3" data-i18n="rsvp_side_title">Szybkie info</h3>
+  <ul class="bullets">
+    <!-- quick info items translated via i18n keys -->
+    <li data-i18n="rsvp_side_1"></li>
+    <!-- new quick info item asking guests to confirm the number of adults and children -->
+    <li data-i18n="rsvp_side_add"></li>
+    <li data-i18n="rsvp_side_2"></li>
+    <li data-i18n="rsvp_side_3"></li>
+  </ul>
+  </div>
+  <div class="panel panel--tight mt">
+  <h3 class="h3" data-i18n="contacts_title">Kontakt</h3>
+  <p class="contacts">
+  <div class="contacts__item">
+  <span aria-hidden="true" class="contacts__icon">📞</span>
+  <span class="contacts__label" data-i18n="contacts_k1">Telefon:</span>
+  <span class="contacts__value" id="contactPhone">Ewelina: +48 515 754 720 · Bartek: +48 784 032 813</span>
+  </div>
+  <div class="contacts__item">
+  <span aria-hidden="true" class="contacts__icon">✉️</span>
+  <span class="contacts__label" data-i18n="contacts_k2">E-mail:</span>
+  <a class="contacts__value" href="mailto:BEMajewscy@gmail.com" id="contactEmail">BEMajewscy@gmail.com</a>
+  </div>
+  </p>
+  </div>
+  </aside>
+  </div>
+  </div>
 </section>
 <section class="section" id="details">
 <div class="wrap">
