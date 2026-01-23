@@ -31,6 +31,17 @@ body{
   backdrop-filter:saturate(140%) blur(10px);
 }
 .topbar__inner{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:14px 0;}
+
+/* Center the navigation links horizontally within the header. We position the nav absolutely
+   in the middle of the topbar container so it remains centered regardless of the width
+   of the monogram or language buttons. */
+.topbar__inner{position:relative;}
+.topnav{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%, -50%);
+}
 .topnav{display:flex; gap:18px; align-items:center;}
 .topnav__link{
   text-decoration:none; color:var(--muted);
@@ -55,12 +66,23 @@ body{
 }
 .lang__btn[aria-pressed="true"]{border-color:var(--accent); color:var(--ink); background:color-mix(in srgb, var(--accent) 10%, transparent);}
 
+/* Mobile hamburger menu button */
+.menu-toggle{
+  display:none;
+  border:none;
+  background:transparent;
+  color:var(--muted);
+  font-size:28px;
+  cursor:pointer;
+}
+
 .hero{
   padding:56px 0 26px;
   background:
     radial-gradient(900px 350px at 50% -100px, color-mix(in srgb, var(--accent) 12%, transparent), transparent 70%),
     linear-gradient(to bottom, var(--bg), var(--bg2));
-  border-bottom:1px solid var(--line);
+  /* remove bottom border to eliminate grey separator after hero */
+  border-bottom:none;
 }
 .hero__inner{display:flex; justify-content:center;}
 .hero__frame{
@@ -71,6 +93,35 @@ body{
   background:linear-gradient(180deg, #ffffffd8, #ffffffc0);
   box-shadow:var(--shadow);
   text-align:center;
+  /* ensure text inside the hero frame uses the main ink color */
+  color:var(--ink);
+}
+
+/* Typography inside the hero card */
+.hero__frame .h1{
+  margin:0;
+  font-family:"Playfair Display", serif;
+  font-weight:500;
+  font-size:42px;
+  letter-spacing:.02em;
+  color:var(--ink);
+}
+.hero__frame .hero__meta{
+  margin-top:10px;
+  font-size:15px;
+  letter-spacing:.02em;
+  color:var(--muted);
+}
+.hero__frame .hero__meta .dot{
+  padding:0 8px;
+  color:var(--line);
+}
+.hero__frame .eyebrow{
+  color:var(--muted);
+  font-weight:600;
+  letter-spacing:.18em;
+  margin-bottom:8px;
+  font-size:12px;
 }
 .eyebrow{
   margin:0 0 10px;
@@ -135,14 +186,22 @@ body{
 .note{margin:18px 0 0; color:var(--muted); font-size:13px;}
 
 .section{padding:46px 0;}
-.section--alt{background:var(--bg2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+.section--alt{
+  background:var(--bg2);
+  /* remove top and bottom borders to avoid grey separators between sections */
+  border-top:none;
+  border-bottom:none;
+}
 
-.section__head{max-width:760px; margin:0 auto 22px; text-align:left;}
+.section__head{max-width:760px; margin:0 auto 22px; text-align:center;}
+/* Increase section headings and center them */
 .h2{
   font-family:"Playfair Display", serif;
   font-weight:500;
-  font-size:30px;
+  /* 1.5× the original 30px size */
+  font-size:45px;
   margin:0 0 10px;
+  text-align:center;
 }
 .lead{margin:0; color:var(--muted);}
 
@@ -158,6 +217,38 @@ body{
   padding:18px 18px 16px;
   background:var(--card);
   box-shadow:var(--shadow);
+}
+
+/* Cards that should center their content vertically and use larger typography */
+.card--centered{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:32px 18px;
+}
+
+/* Custom styles for the map card: center the heading */
+.card--map .h3{
+  text-align:center;
+}
+.card--centered .h3{
+  /* Larger subheading for centered cards */
+  font-size:20px;
+}
+.card--centered .card__big{
+  font-size:26px;
+  margin-bottom:10px;
+}
+.card--centered .muted{
+  font-size:18px;
+}
+
+/* Center any embedded iframes within cards (e.g. the map) */
+.card iframe{
+  display:block;
+  margin:0 auto;
 }
 .h3{margin:0 0 10px; font-size:16px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); font-weight:800;}
 .card__big{margin:0 0 8px; font-size:20px; font-weight:800;}
@@ -183,10 +274,55 @@ body{
 .panel--tight{padding:16px}
 
 .timeline{list-style:none; padding:0; margin:0;}
-.timeline li{display:flex; gap:12px; padding:10px 0; border-bottom:1px solid color-mix(in srgb, var(--line) 60%, transparent);}
-.timeline li:last-child{border-bottom:0}
-.t__time{font-weight:900; min-width:54px;}
-.t__text{color:var(--muted); font-weight:600;}
+/* Timeline items: align time and text side by side with clear hierarchy */
+.timeline li{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  padding:10px 0;
+  border-bottom:1px solid color-mix(in srgb, var(--line) 60%, transparent);
+}
+.timeline li:last-child{
+  border-bottom:0;
+}
+/* Bold, larger font for the time portion */
+.timeline-time{
+  font-weight:700;
+  font-size:20px;
+  min-width:60px;
+  color:var(--ink);
+}
+/* Muted, slightly smaller font for the event description */
+/* Ensure event names in the timeline use the muted colour and are slightly smaller */
+.timeline-text{
+  font-weight:600;
+  font-size:18px;
+  /* Apply muted colour with !important to override inherited ink colour */
+  color:var(--muted) !important;
+}
+
+/* Increase specificity for timeline text so the muted colour overrides any inherited ink colour */
+.timeline li .timeline-text{
+  /* Use the base ink colour but reduce opacity to give a muted appearance */
+  color: var(--ink) !important;
+  opacity: 0.6;
+}
+
+/* Style the active RSVP button so users can clearly see which option is selected */
+/* Attendance buttons (yes/no) should look like ghost buttons by default.
+   Regardless of any base `.btn` styles, these rules reset the background,
+   text colour and border to the neutral ghost style. When the `.active`
+   class is applied, the accent colours take over. */
+.rsvp-btn{
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+.rsvp-btn.active{
+  background: var(--accent) !important;
+  color: white !important;
+  border-color: var(--accent) !important;
+}
 
 .mt{margin-top:14px}
 
@@ -255,11 +391,111 @@ body{
   .cards{grid-template-columns:1fr; }
   .two{grid-template-columns:1fr;}
   .rsvp{grid-template-columns:1fr;}
+  /* Hide the nav by default and show the menu toggle button on small screens */
   .topnav{display:none;}
+  .menu-toggle{display:block;}
   .mark{min-width:auto}
+
+  /* When .show is applied, display the nav as a vertical list */
+  .topnav.show{
+    display:flex;
+    position:static;
+    transform:none;
+    flex-direction:column;
+    gap:12px;
+    margin-top:10px;
+  }
 }
 @media (max-width: 520px){
   .title{font-size:34px}
   .grid{grid-template-columns:1fr;}
   .countdown__item{min-width:84px}
+}
+
+
+
+/* ===== Hero banner (modern design is defined above; legacy styles removed) ===== */
+
+/* ===== Photo break ===== */
+.photo-break{ background: var(--bg); }
+.photo-break__grid{
+  /* Use a single image that fills the width of the viewport. We remove the grid columns and
+     constraints so the photo spans edge to edge. */
+  display:block;
+  padding:0;
+  margin:0;
+}
+
+.photo-break__grid img{
+  width:100%;
+  /* Show the full photo without cropping. Let the height scale naturally
+     based on the image's aspect ratio. This ensures the entire scene,
+     including the couple's hands, remains visible. */
+  height:auto;
+  object-fit:contain;
+  /* Remove border radius and shadow so the image touches the edges cleanly */
+  border-radius:0;
+  box-shadow:none;
+}
+
+@media (max-width: 900px){
+  .photo-break__grid{ padding:0; }
+  /* On smaller screens, still allow the image height to scale naturally */
+  .photo-break__grid img{
+    height:auto;
+    object-fit:contain;
+  }
+}
+
+/* ===== Contacts ===== */
+.contacts{ margin: 10px 0 0; }
+.contacts__item{
+  display:flex;
+  gap:10px;
+  align-items:baseline;
+  padding: 8px 0;
+}
+.contacts__icon{
+  width: 22px;
+  text-align:center;
+  opacity: 0.9;
+  /* Render the contact icons in grayscale to achieve a black‑and‑white look */
+  filter: grayscale(1);
+}
+.contacts__label{ color: var(--muted); min-width: 70px; }
+.contacts__value{ color: var(--text); }
+.contacts a.contacts__value{ text-decoration: underline; text-underline-offset: 3px; }
+
+/* ===== Lists inside cards ===== */
+.list{ margin: 14px 0 0; padding-left: 18px; }
+.list li{ margin: 10px 0; }
+.list__note{ display:block; color: var(--muted); font-size: 13px; margin-top: 3px; }
+
+.gifts__icons{
+  font-size: 20px;
+  letter-spacing: 0.2em;
+  margin: 8px 0 6px;
+  opacity: 0.9;
+}
+
+/* Gifts icons */
+.gifts-icons{
+  display:flex;
+  gap:16px;
+  font-size:28px;
+  align-items:center;
+  justify-content:flex-start;
+}
+
+.gifts__icon-row{
+  display:flex;
+  gap:16px;
+  font-size:32px;
+  align-items:center;
+  filter: grayscale(1);
+}
+.gift-icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
 }

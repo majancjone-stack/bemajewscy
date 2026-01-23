@@ -14,11 +14,11 @@ const CONFIG = {
   // Paste a Google Maps link to the venue here (share link):
   mapsUrl: "https://www.google.com/maps/search/?api=1&query=Pa%C5%82ac%20%C5%BB%C3%B3%C5%82win",
   // RSVP backend:
-  // Option A (recommended): Formspree endpoint, e.g. https://formspree.io/f/xxxxxx
-  // Option B: leave empty to use mailto fallback (not great)
-  formEndpoint: "https://docs.google.com/forms/d/e/1FAIpQLSeGYa9gmN_GSebEiDDc6zKzihukNHNKvgRi-ztL_CwnSXbI3w/formResponse",
-  contactPhone: "+48 515 754 720",
-  contactEmail: "Mucha.evelina@gmail.com"
+  // We'll direct guests to a prefilled Google Forms view. The base of this URL
+  // (without query parameters) is used in handleRSVP to assemble the final link.
+  formEndpoint: "https://docs.google.com/forms/d/e/1FAIpQLSeGYa9gmN_GSebEiDDc6zKzihukNHNKvgRi-ztL_CwnSXbI3w/viewform",
+  contactPhone: "Ewelina: +48 515 754 720 · Bartek: +48 784 032 813",
+  contactEmail: "BEMajewscy@gmail.com"
 };
 
 // ====== i18n strings ======
@@ -36,30 +36,40 @@ const I18N = {
     cd_mins: "min",
     cta_rsvp: "Potwierdź obecność",
     cta_details: "Zobacz szczegóły",
-    hero_note: "To strona publiczna — podeślij link rodzinie i znajomym.",
+    // hero_note removed (not used in markup)
 
     details_title: "Szczegóły",
-    details_lead: "Najważniejsze informacje w jednym miejscu — a my będziemy aktualizować stronę, gdy pojawią się nowe szczegóły.",
+    // details_lead removed (not used in markup)
     details_when_title: "Kiedy",
-    details_when_text: "Zapiszcie datę — plan dnia podeślemy bliżej wydarzenia.",
+    // updated to emphasise ceremony time at the palace
+    // Invite guests to a garden ceremony at the palace at 16:00
+    details_when_text: "Zapraszamy na Ceremonię w ogrodzie Pałacu o godzinie 16:00",
     details_where_title: "Gdzie",
-    details_where_text: "Warszawa i okolice. Dokładne wskazówki dojazdu uzupełnimy wkrótce.",
-    details_where_map: "Otwórz mapę →",
-    details_stay_title: "Noclegi",
-    details_stay_text: "Polecane hotele / opcje noclegu dodamy tu w kolejnych miesiącach.",
+    // updated description of the venue
+    details_where_text: "XIX-wieczny późnoklasycystyczny pałac ok. 30 minut od Warszawy.",
+    // Keep translation for map link though it is no longer displayed in the UI
+    // Unused keys removed to keep the dictionary clean
 
-    details_schedule_title: "Plan (wstępnie)",
-    schedule_1: "Zbiórka / przyjazd gości",
+    // remove provisional note from the schedule title
+    details_schedule_title: "Plan",
+    // Each schedule item now only contains the name of the activity. The times
+    // are defined in the markup itself for better styling and separation.
+    schedule_1: "Przyjazd gości",
     schedule_2: "Ceremonia",
-    schedule_3: "Toast + życzenia",
-    schedule_4: "Kolacja",
-    schedule_5: "Tort + zabawa",
+    schedule_3: "Toast & Życzenia",
+    schedule_4: "Kolacja & Przemowy",
+    schedule_5: "Zabawa",
     details_schedule_note: "Godziny są orientacyjne — potwierdzimy finalną rozpiskę bliżej terminu.",
 
     details_dresscode_title: "Dress code",
-    details_dresscode_text: "Pałacowo-minimalistycznie: klasyka, stonowane kolory, eleganckie detale.",
+    // Dress code emphasises a palace‑garden vibe: classic, muted colours, elegant details — imagine a garden party with a hint of British elegance. Hats welcome.
+    details_dresscode_text: "Pałacowo-ogrodowy: klasyka, stonowane kolory, eleganckie detale. Wyobraźcie sobie garden party z nutą brytyjskiej elegancji — kapelusze mile widziane.",
     details_gifts_title: "Prezenty",
-    details_gifts_text: "Dodamy informację bliżej wydarzenia (jeśli wolicie: lista, koperta, czy coś charytatywnego).",
+    // Updated gifts text: kindly ask guests to bring an envelope instead of flowers
+    details_gifts_text: "Ucieszymy się z koperty zamiast kwiatów — tradycyjne bukiety nie są potrzebne.",
+
+    // map card title
+    details_map_title: "Mapa",
 
     rsvp_title: "RSVP",
     rsvp_lead: "Dajcie znać, czy będziecie — zajmie to mniej niż minutę.",
@@ -69,31 +79,42 @@ const I18N = {
     form_attendance: "Obecność",
     form_choose: "Wybierz…",
     form_yes: "Będę",
-    form_no: "Nie dam rady",
+    form_no: "Nie będzie mnie",
     form_guests: "Liczba osób (łącznie)",
+    // New labels for adults and children counts
+    form_guests_adults: "Łącznie dorosłych",
+    form_guests_children: "Łącznie dzieci",
     form_diet: "Dieta / alergie",
+    form_diet2: "Dieta (osoby towarzyszącej)",
     form_notes: "Uwagi",
     form_submit: "Wyślij RSVP",
-    form_privacy: "Dane tylko do organizacji wesela. Nie spamujemy.",
+    // form_privacy removed (not used in markup)
     rsvp_side_title: "Szybkie info",
-    rsvp_side_1: "Jeśli zmienią się plany — wypełnij formularz ponownie (nadpiszemy).",
-    rsvp_side_2: "Jeśli ktoś z Was ma specjalne potrzeby — wpisz w „Uwagi”.",
-    rsvp_side_3: "Na ostatnią chwilę podeślemy plan dnia i detale dojazdu.",
+    rsvp_side_1: "Prosimy o odpowiedź do 28 lutego 2026.",
+    // New quick info explaining that guests should confirm attendance for themselves and their families
+    rsvp_side_add: "Prosimy o potwierdzenie obecności w swoim imieniu oraz osoby towarzyszącej/ rodziny, poprzez wskazanie ilości osób dorosłych oraz dzieci.",
+    // Quick info: third point instructs guests to list allergies, special needs as well as children's age and diet in the notes
+    rsvp_side_2: "Alergie, specjalne potrzeby, wiek i dieta dzieci prosimy wpisać w “Uwagi”.",
+    // Fourth point encourages an adults‑only celebration
+    rsvp_side_3: "Zachęcamy do przybycia bez dzieci i dzikiej zabawy z nami do białego rana, decyzja należy do Was.",
     contacts_title: "Kontakt",
-    contacts_text: "Wstawcie tu numer/WhatsApp lub mail do szybkich pytań.",
+    // contacts_text removed (not used in markup)
     contacts_k1: "Telefon:",
     contacts_k2: "E-mail:",
 
     faq_title: "FAQ",
-    faq_lead: "Najczęstsze pytania. Krótko i konkretnie.",
+    // faq_lead removed (not used in markup)
     faq_1_q: "Czy będą dzieci?",
-    faq_1_a: "Wpiszcie w RSVP liczbę osób i uwagi — damy znać, jak planujemy logistykę.",
+    // Encourage guests to come without children and party with us till morning
+    faq_1_a: "Zachęcamy do przybycia bez dzieci i dzikiej zabawy z nami do białego rana, decyzja należy do Was.",
     faq_2_q: "Czy jest parking?",
     faq_2_a: "Tak — dodamy dokładne wskazówki dojazdu i info o parkingu bliżej terminu.",
-    faq_3_q: "Czy będzie transport?",
-    faq_3_a: "Rozważamy zorganizowany transport — damy znać na stronie, jeśli potwierdzimy.",
+    // The third FAQ slot is unused; we omit it to avoid old text resurfacing
+    faq_3_q: "",
+    faq_3_a: "",
+    // RSVP deadline question and answer
     faq_4_q: "Do kiedy RSVP?",
-    faq_4_a: "Na teraz prosimy o wstępne potwierdzenie. Finalny termin podamy później.",
+    faq_4_a: "Prosimy o potwierdzenie obecności do 28 lutego 2026.",
 
     footer_made: "Widzimy się"
   },
@@ -111,30 +132,39 @@ const I18N = {
     cd_mins: "min",
     cta_rsvp: "RSVP now",
     cta_details: "View details",
-    hero_note: "Public page — share the link with family and friends.",
+    // hero_note removed (not used in markup)
 
     details_title: "Details",
-    details_lead: "All key information in one place — we’ll keep this page updated as new details are confirmed.",
+    // details_lead removed (not used in markup)
     details_when_title: "When",
-    details_when_text: "Save the date — we’ll share the final timeline closer to the wedding.",
+    // Invite guests to a garden ceremony at the palace at 16:00
+    details_when_text: "Join us for a garden ceremony at the Palace at 16:00",
     details_where_title: "Where",
-    details_where_text: "Warsaw area. We’ll add precise directions soon.",
-    details_where_map: "Open map →",
-    details_stay_title: "Accommodation",
-    details_stay_text: "Recommended hotels / stay options will be added in the coming months.",
+    // updated description of the venue in English
+    details_where_text: "A 19th‑century late‑Classicist palace about 30 minutes from Warsaw.",
+    // Unused key removed to keep dictionary clean
+    // Unused keys removed to keep the dictionary clean
 
-    details_schedule_title: "Draft timeline",
+    // shorten to simply "Timeline" in English
+    details_schedule_title: "Timeline",
+    // Each schedule item now only contains the name of the activity. The times
+    // are defined in the markup itself for better styling and separation.
     schedule_1: "Guests arrival",
     schedule_2: "Ceremony",
     schedule_3: "Toast & wishes",
-    schedule_4: "Dinner",
-    schedule_5: "Cake & party",
+    schedule_4: "Dinner & speeches",
+    schedule_5: "Party",
     details_schedule_note: "Times are approximate — the final schedule will be confirmed closer to the date.",
 
     details_dresscode_title: "Dress code",
-    details_dresscode_text: "Palace-minimal: classic silhouettes, muted tones, elegant details.",
+    // Dress code emphasises a palace‑garden vibe: classic silhouettes, muted tones, elegant details — imagine a garden party with a hint of British elegance. Hats welcome.
+    details_dresscode_text: "Palace‑garden: classic silhouettes, muted tones, elegant details. Imagine a garden party with a touch of British elegance — hats welcome.",
     details_gifts_title: "Gifts",
-    details_gifts_text: "We’ll share gift preferences closer to the date (wishlist / envelope / charity option).",
+    // Updated gifts text: we would appreciate an envelope instead of flowers
+    details_gifts_text: "We’d appreciate an envelope instead of flowers — traditional bouquets aren’t necessary.",
+
+    // map card title
+    details_map_title: "Map",
 
     rsvp_title: "RSVP",
     rsvp_lead: "Please let us know if you can make it — it takes less than a minute.",
@@ -146,29 +176,38 @@ const I18N = {
     form_yes: "Yes, I will attend",
     form_no: "Sorry, I can't",
     form_guests: "Number of guests (total)",
+    // New labels for adults and children counts
+    form_guests_adults: "Adults (total)",
+    form_guests_children: "Children (total)",
     form_diet: "Dietary / allergies",
+    form_diet2: "Dietary (plus-one)",
     form_notes: "Notes",
     form_submit: "Send RSVP",
-    form_privacy: "Used only for wedding planning. No spam.",
+    // form_privacy removed (not used in markup)
     rsvp_side_title: "Quick notes",
-    rsvp_side_1: "Plans changed? Submit the form again (we’ll overwrite).",
-    rsvp_side_2: "Any special needs? Put them in “Notes”.",
-    rsvp_side_3: "We’ll share final directions and timeline closer to the wedding.",
+    rsvp_side_1: "Please RSVP by 28 February 2026.",
+    // Third point instructs guests to list allergies, special needs and children's age and diet in the notes
+    rsvp_side_2: "Please include any allergies, special needs, children's ages and diet in “Notes”.",
+    // Fourth point encourages an adults‑only celebration
+    rsvp_side_3: "We encourage an adults-only celebration and a long night of dancing — the decision is yours.",
+    // New quick info explaining that guests should confirm numbers of adults and children
+    rsvp_side_add: "Please confirm your attendance for yourself and your plus‑one/family by indicating the number of adults and children.",
     contacts_title: "Contact",
-    contacts_text: "Add a phone/WhatsApp or email for quick questions.",
+    // contacts_text removed (not used in markup)
     contacts_k1: "Phone:",
     contacts_k2: "Email:",
 
     faq_title: "FAQ",
-    faq_lead: "Most common questions — short and clear.",
+    // faq_lead removed (not used in markup)
     faq_1_q: "Will children be welcome?",
-    faq_1_a: "Please include the total number of guests and any notes in the RSVP — we’ll confirm logistics.",
+    faq_1_a: "We encourage you to come without children and party with us till morning — the decision is yours.",
     faq_2_q: "Is there parking?",
     faq_2_a: "Yes — we’ll share detailed directions and parking info closer to the date.",
-    faq_3_q: "Will there be transportation?",
-    faq_3_a: "We are considering organized transport — we’ll update the page if confirmed.",
+    // The third FAQ slot is unused; leaving it blank to avoid old content
+    faq_3_q: "",
+    faq_3_a: "",
     faq_4_q: "RSVP deadline?",
-    faq_4_a: "For now, we’d like an initial confirmation. We’ll set a final deadline later.",
+    faq_4_a: "Please RSVP by 28 February 2026.",
 
     footer_made: "See you on"
   }
@@ -188,11 +227,15 @@ function applyConfig(){
 
   // venue/city
   setText("footerVenue", currentLang()==="pl" ? CONFIG.venuePL : CONFIG.venueEN);
-  $("#mapsLink").href = CONFIG.mapsUrl;
+  // Only set the map link href if the element exists. The link has been removed from the UI.
+  const mapsLinkEl = document.getElementById('mapsLink');
+  if(mapsLinkEl) mapsLinkEl.href = CONFIG.mapsUrl;
 
   // contacts
   setText("contactPhone", CONFIG.contactPhone);
   setText("contactEmail", CONFIG.contactEmail);
+  const ce = document.getElementById("contactEmail");
+  if(ce && ce.tagName === "A") ce.href = "mailto:" + CONFIG.contactEmail;
 
   // form endpoint
   const form = $("#rsvpForm");
@@ -228,12 +271,26 @@ function setLang(lang){
   // update placeholders
   const notes = document.querySelector('textarea[name="notes"]');
   if(notes){
-    notes.placeholder = lang === "pl" ? "Np. potrzeba noclegu, wózek dziecięcy itd." : "E.g. accommodation needed, stroller access, etc.";
+    // Provide a language‑specific placeholder instructing guests to list any allergies, children's age and diet (if applicable) and special requirements.
+    if(lang === 'pl'){
+      notes.placeholder = "Prosimy o wypisanie alergii, wieku oraz diety dzieci (jeśli dotyczy) oraz ewentualnych specjalnych potrzeb";
+    } else {
+      notes.placeholder = "Please list any allergies, children's age and diet (if applicable) and any special requirements";
+    }
   }
-  const diet = document.querySelector('input[name="diet"]');
-  if(diet){
-    diet.placeholder = lang === "pl" ? "np. wege, bez glutenu…" : "e.g. vegetarian, gluten-free…";
-  }
+  // Diet fields are selects now, so no placeholders are set
+
+  // The timeline items are specified in the HTML with separate time and text spans. The names
+  // translate automatically via data‑i18n attributes.
+
+  // update attendance button labels based on language
+  $$('.rsvp-btn').forEach(btn => {
+    if(btn.dataset.value === 'yes'){
+      btn.textContent = I18N[lang].form_yes;
+    } else if(btn.dataset.value === 'no'){
+      btn.textContent = I18N[lang].form_no;
+    }
+  });
 }
 
 function pad(n){ return String(n).padStart(2,"0"); }
@@ -254,85 +311,81 @@ function updateCountdown(){
   setText("cd_mins", pad(mins));
 }
 
-async function handleRSVP(){
-  // attendance buttons behavior
-  $$(".rsvp-btn").forEach(btn => btn.addEventListener('click', ()=>{
-    const v = btn.dataset.value;
-    const hf = document.getElementById('attendanceField'); if(hf) hf.value = v;
-    $$(".rsvp-btn").forEach(b=>b.classList.remove('active'));
+function handleRSVP(){
+  // toggle attendance buttons to fill hidden field
+  $$(".rsvp-btn").forEach(btn => btn.addEventListener('click', () => {
+    const value = btn.dataset.value;
+    const hidden = document.getElementById('attendanceField');
+    if(hidden) hidden.value = value;
+    $$(".rsvp-btn").forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
   }));
 
   const form = $("#rsvpForm");
   const status = $("#formStatus");
-  if(!form || !status) return;
+  if(!form) return;
 
-  
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      status.className = "form__status";
-      status.textContent = "";
+    form.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-      const lang = currentLang();
-      const okMsg = lang==="pl" ? "Dzięki! RSVP zapisane." : "Thank you — your RSVP is recorded.";
-      const okMsg_both = "Dzięki! RSVP zapisane. / Thank you — your RSVP is recorded.";
-      const errMsg = lang==="pl" ? "Coś nie poszło. Spróbuj ponownie lub skontaktuj się z nami." : "Something went wrong. Please try again or contact us.";
-
-      // Prepare mapping for Google Forms entries
-      const mapping = {"name": "entry.1057752695", "attendance": "entry.98626208", "guests_adults": "entry.898899753", "guests_children": "entry.633681487", "diet": "entry.681235079", "notes": "entry.678744193"};
-
-      // build payload
-      const formData = new FormData(form);
-      const payload = new URLSearchParams();
-      for (const [k, v] of formData.entries()) {
-        if (mapping[k]) payload.append(mapping[k], v);
+    // Build a prefilled URL for the Google Form. We map our local form
+    // fields to the corresponding Google Forms entry identifiers. We also
+    // convert certain values to human‑readable labels matching the sample
+    // given by the couple (e.g. attendance options, diet names).
+    const mapping = {
+      name: 'entry.1057752695',
+      attendance: 'entry.98626208',
+      guests_adults: 'entry.898899753',
+      guests_children: 'entry.633681487',
+      diet: 'entry.681235079',
+      diet2: 'entry.2116388700',
+      notes: 'entry.678744193'
+    };
+    const fd = new FormData(form);
+    const params = new URLSearchParams();
+    for(const [key, val] of fd.entries()){
+      if(!mapping[key]) continue;
+      let out = val;
+      // Convert boolean values to strings used in the Google Form
+      if(key === 'attendance'){
+        out = (val === 'yes') ? 'Tak, będę / Yes, I will attend' : 'Nie będzie mnie / No, I cannot attend';
+      } else if(key === 'diet' || key === 'diet2'){
+        if(val === 'standard') out = 'Standard';
+        else if(val === 'wege') out = 'Wege';
+        else if(val === 'vegan') out = 'Vegan';
       }
-
-      // include hidden event info
-      const evDate = form.querySelector('input[name="event_date"]') ? form.querySelector('input[name="event_date"]').value : "";
-      const evCity = form.querySelector('input[name="event_city"]') ? form.querySelector('input[name="event_city"]').value : "";
-      const evVenue = form.querySelector('input[name="event_venue"]') ? form.querySelector('input[name="event_venue"]').value : "";
-      if(evDate) payload.append("entry.event_date", evDate);
-      if(evCity) payload.append("entry.event_city", evCity);
-      if(evVenue) payload.append("entry.event_venue", evVenue);
-
-      // Send to Google Forms (no-cors)
-      try {
-        await fetch("https://docs.google.com/forms/d/e/1FAIpQLSeGYa9gmN_GSebEiDDc6zKzihukNHNKvgRi-ztL_CwnSXbI3w/formResponse", {
-          method: "POST",
-          mode: "no-cors",
-          body: payload
-        });
-        form.reset();
-        $("#langField").value = lang;
-        status.classList.add("ok");
-        status.textContent = okMsg_both;
-      } catch (err) {
-        // fallback: save locally and offer CSV download
-        const data = Object.fromEntries(new FormData(form).entries());
-        const key = "rsvp_submissions";
-        const prev = JSON.parse(localStorage.getItem(key) || "[]");
-        prev.push(data);
-        localStorage.setItem(key, JSON.stringify(prev));
-        status.classList.add("err");
-        status.textContent = "Problem z wysłaniem — odpowiedź zapisana lokalnie. / Submission saved locally due to network issue.";
-      }
-    });
-
-
-      if(res.ok){
-        form.reset();
-        $("#langField").value = lang;
-        status.classList.add("ok");
-        status.textContent = okMsg_both;
-      }else{
-        status.classList.add("err");
-        status.textContent = errMsg;
-      }
-    }catch(_){
-      status.classList.add("err");
-      status.textContent = errMsg;
+      params.append(mapping[key], out);
     }
+    // Compose the final URL for the form response (not the viewform) and send
+    // the RSVP via a background request. This avoids redirecting the user to
+    // Google Forms while still submitting the data. We cannot fetch
+    // cross-origin resources with CORS, but posting with "no-cors" mode
+    // allows the request to succeed silently.
+    const base = (form.action || CONFIG.formEndpoint).replace('/viewform','/formResponse');
+    const submitUrl = base;
+    fetch(submitUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: params.toString()
+    }).catch(() => {/* ignore errors due to no-cors */});
+
+    // Display a success message to the user and reset the form. We cannot
+    // detect an actual response due to no-cors restrictions, so we assume
+    // success.
+    if(status){
+      status.className = 'form__status ok';
+      status.textContent = currentLang() === 'pl' ?
+        'Dziękujemy! Twoje zgłoszenie zostało zapisane.' :
+        'Thank you! Your RSVP has been recorded.';
+    }
+    // Reset the form to its initial state. This clears input values but does
+    // not automatically update the active state of the attendance buttons.
+    form.reset();
+    // Remove any active classes from the attendance buttons so no option
+    // appears selected after resetting the form. Guests will need to re‑select
+    // their attendance when submitting a new RSVP.
+    $$('.rsvp-btn').forEach(b => b.classList.remove('active'));
   });
 }
 
@@ -351,6 +404,19 @@ function init(){
 
   // RSVP
   handleRSVP();
+
+  // Mobile menu toggle: clicking the hamburger button will toggle
+  // the visibility of the nav on small screens. The nav element
+  // gains a `.show` class to override its default display:none style
+  // defined in the CSS media query. This ensures accessibility
+  // across devices while keeping the header clean on desktop.
+  const menuToggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('.topnav');
+  if(menuToggle && nav){
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('show');
+    });
+  }
 }
 
 document.addEventListener("DOMContentLoaded", init);
