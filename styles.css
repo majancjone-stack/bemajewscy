@@ -123,6 +123,18 @@ body{
   margin-bottom:8px;
   font-size:12px;
 }
+
+/* Invitation line at the top of the hero card. It appears above "Save the date" and
+   uses a larger, uppercase font with the accent colour to catch the eye. */
+.hero__invite{
+  margin:0 0 6px;
+  font-family:"Playfair Display", serif;
+  font-weight:700;
+  font-size:28px;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  color:var(--accent);
+}
 .eyebrow{
   margin:0 0 10px;
   letter-spacing:.18em;
@@ -317,6 +329,9 @@ body{
   background: transparent;
   color: var(--ink);
   border: 1px solid var(--line);
+  /* Make attendance buttons larger and more inviting */
+  padding: 14px 20px;
+  font-size: 16px;
 }
 .rsvp-btn.active{
   background: var(--accent) !important;
@@ -463,7 +478,14 @@ body{
   filter: grayscale(1);
 }
 .contacts__label{ color: var(--muted); min-width: 70px; }
-.contacts__value{ color: var(--text); }
+/* Contact value: display phone numbers on separate lines and keep colour inherited */
+.contacts__value{
+  color: var(--text);
+  display:flex;
+  flex-direction:column;
+  line-height:1.4;
+}
+
 .contacts a.contacts__value{ text-decoration: underline; text-underline-offset: 3px; }
 
 /* ===== Lists inside cards ===== */
@@ -485,6 +507,13 @@ body{
   font-size:28px;
   align-items:center;
   justify-content:flex-start;
+}
+
+/* Add extra space below the gifts section to visually separate it from the following Dress code panel */
+/* Add extra space above and below the gifts section to visually separate it from the Dress code and subsequent content */
+.gifts{
+  margin-top: 22px;
+  margin-bottom: 22px;
 }
 
 .gifts__icon-row{

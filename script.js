@@ -25,7 +25,8 @@ const CONFIG = {
 const I18N = {
   pl: {
     nav_details: "Szczegóły",
-    nav_rsvp: "RSVP",
+    // Change RSVP labels to a clearer Polish phrase meaning "Confirm attendance"
+    nav_rsvp: "Potwierdź obecność",
     nav_faq: "FAQ",
     hero_eyebrow: "SAVE THE DATE",
     hero_date_long: CONFIG.dateLongPL,
@@ -34,6 +35,7 @@ const I18N = {
     cd_days: "dni",
     cd_hours: "godz.",
     cd_mins: "min",
+    // Call-to-action button now invites guests to confirm attendance (Polish)
     cta_rsvp: "Potwierdź obecność",
     cta_details: "Zobacz szczegóły",
     // hero_note removed (not used in markup)
@@ -46,7 +48,7 @@ const I18N = {
     details_when_text: "Zapraszamy na Ceremonię w ogrodzie Pałacu o godzinie 16:00",
     details_where_title: "Gdzie",
     // updated description of the venue
-    details_where_text: "XIX-wieczny późnoklasycystyczny pałac ok. 30 minut od Warszawy.",
+    details_where_text: "XIX-wieczny późnoklasycystyczny pałac ok. 30 minut od Warszawy",
     // Keep translation for map link though it is no longer displayed in the UI
     // Unused keys removed to keep the dictionary clean
 
@@ -71,7 +73,8 @@ const I18N = {
     // map card title
     details_map_title: "Mapa",
 
-    rsvp_title: "RSVP",
+    // Section title for the RSVP form changed to a clear Polish phrase
+    rsvp_title: "Potwierdź obecność",
     rsvp_lead: "Dajcie znać, czy będziecie — zajmie to mniej niż minutę.",
     form_name: "Imię i nazwisko",
     form_email: "E-mail (opcjonalnie)",
@@ -91,26 +94,31 @@ const I18N = {
     form_diet2: "Dieta Partnera/ki",
     form_partner_name: "Imię i nazwisko Partnera/ki",
     form_notes: "Uwagi",
-    form_submit: "Wyślij RSVP",
+    // Submit button now reads "Send confirmation" instead of RSVP
+    form_submit: "Wyślij potwierdzenie",
     // form_privacy removed (not used in markup)
     rsvp_side_title: "Szybkie info",
-    rsvp_side_1: "Prosimy o odpowiedź do 28 lutego 2026.",
+    // First quick note: encourage early confirmation with new deadline of 30 June 2026
+    rsvp_side_1: "Prosimy o potwierdzenie swojej obecności jak najszybciej, najpóźniej do 30 czerwca 2026.",
     // New quick info explaining that guests should confirm attendance for themselves and their families
     rsvp_side_add: "Prosimy o potwierdzenie obecności w swoim imieniu oraz osoby towarzyszącej/ rodziny, poprzez wskazanie ilości osób dorosłych oraz dzieci.",
     // Quick info: third point instructs guests to list allergies, special needs as well as children's age and diet in the notes
-    rsvp_side_2: "Alergie, specjalne potrzeby, wiek i dieta dzieci prosimy wpisać w “Uwagi”.",
+    rsvp_side_2: "Alergie, specjalne potrzeby, wiek i dieta dzieci prosimy wpisać w \u201cUwagi\u201d.",
     // Fourth point encourages an adults‑only celebration
-    rsvp_side_3: "Zachęcamy do przybycia bez dzieci i dzikiej zabawy z nami do białego rana, decyzja należy do Was.",
+    // The fourth bullet about adults‑only celebration has been removed from the UI; keep key for completeness but leave it blank
+    rsvp_side_3: "",
     contacts_title: "Kontakt",
     // contacts_text removed (not used in markup)
     contacts_k1: "Telefon:",
     contacts_k2: "E-mail:",
 
     faq_title: "FAQ",
+    // Subtitle under the FAQ heading explaining what follows
+    faq_subtitle: "Najczęściej zadawane pytania",
     // faq_lead removed (not used in markup)
-    faq_1_q: "Czy będą dzieci?",
-    // Encourage guests to come without children and party with us till morning
-    faq_1_a: "Zachęcamy do przybycia bez dzieci i dzikiej zabawy z nami do białego rana, decyzja należy do Was.",
+    // FAQ question about children removed from UI; leaving keys empty to avoid unused content surfacing
+    faq_1_q: "",
+    faq_1_a: "",
     faq_2_q: "Czy jest parking?",
     faq_2_a: "Tak — dodamy dokładne wskazówki dojazdu i info o parkingu bliżej terminu.",
     // The third FAQ slot is unused; we omit it to avoid old text resurfacing
@@ -118,14 +126,20 @@ const I18N = {
     faq_3_a: "",
     // RSVP deadline question and answer
     faq_4_q: "Do kiedy RSVP?",
-    faq_4_a: "Prosimy o potwierdzenie obecności do 28 lutego 2026.",
+    // Update RSVP deadline answer: encourage people to confirm attendance quickly, by 30 June 2026
+    faq_4_a: "Prosimy o potwierdzenie obecności jak najszybciej, najpóźniej do 30 czerwca 2026.",
 
-    footer_made: "Widzimy się"
+    footer_made: "Widzimy się",
+    // Invitation line at the top of the hero section (large text above "Save the date")
+    hero_invite: "ZAPRASZAMY NA WESELE!",
+    // Label for the "add to calendar" link in the When card
+    details_when_calendar_link: "Dodaj do kalendarza"
   },
 
   en: {
     nav_details: "Details",
-    nav_rsvp: "RSVP",
+    // Change RSVP label in navigation to a clear English phrase
+    nav_rsvp: "Confirm attendance",
     nav_faq: "FAQ",
     hero_eyebrow: "SAVE THE DATE",
     hero_date_long: CONFIG.dateLongEN,
@@ -134,7 +148,7 @@ const I18N = {
     cd_days: "days",
     cd_hours: "hrs",
     cd_mins: "min",
-    cta_rsvp: "RSVP now",
+    cta_rsvp: "Confirm attendance",
     cta_details: "View details",
     // hero_note removed (not used in markup)
 
@@ -145,7 +159,7 @@ const I18N = {
     details_when_text: "Join us for a garden ceremony at the Palace at 16:00",
     details_where_title: "Where",
     // updated description of the venue in English
-    details_where_text: "A 19th‑century late‑Classicist palace about 30 minutes from Warsaw.",
+    details_where_text: "A 19th‑century late‑Classicist palace about 30 minutes from Warsaw",
     // Unused key removed to keep dictionary clean
     // Unused keys removed to keep the dictionary clean
 
@@ -170,7 +184,8 @@ const I18N = {
     // map card title
     details_map_title: "Map",
 
-    rsvp_title: "RSVP",
+    // Section title for the RSVP form changed to a clear English phrase
+    rsvp_title: "Confirm attendance",
     rsvp_lead: "Please let us know if you can make it — it takes less than a minute.",
     form_name: "Full name",
     form_email: "Email (optional)",
@@ -190,14 +205,16 @@ const I18N = {
     form_diet2: "Partner's diet",
     form_partner_name: "Partner's name",
     form_notes: "Notes",
-    form_submit: "Send RSVP",
+    form_submit: "Send confirmation",
     // form_privacy removed (not used in markup)
     rsvp_side_title: "Quick notes",
-    rsvp_side_1: "Please RSVP by 28 February 2026.",
+    // First quick note: encourage early confirmation with new deadline of 30 June 2026
+    rsvp_side_1: "Please confirm your attendance as soon as possible, and no later than 30 June 2026.",
     // Third point instructs guests to list allergies, special needs and children's age and diet in the notes
-    rsvp_side_2: "Please include any allergies, special needs, children's ages and diet in “Notes”.",
+    rsvp_side_2: "Please include any allergies, special needs, children's ages and diet in \u201cNotes\u201d.",
     // Fourth point encourages an adults‑only celebration
-    rsvp_side_3: "We encourage an adults-only celebration and a long night of dancing — the decision is yours.",
+    // The fourth bullet about an adults‑only celebration has been removed from the UI; keep key but leave it blank
+    rsvp_side_3: "",
     // New quick info explaining that guests should confirm numbers of adults and children
     rsvp_side_add: "Please confirm your attendance for yourself and your plus‑one/family by indicating the number of adults and children.",
     contacts_title: "Contact",
@@ -206,18 +223,26 @@ const I18N = {
     contacts_k2: "Email:",
 
     faq_title: "FAQ",
+    // Subtitle under the FAQ heading explaining what follows
+    faq_subtitle: "Frequently Asked Questions",
     // faq_lead removed (not used in markup)
-    faq_1_q: "Will children be welcome?",
-    faq_1_a: "We encourage you to come without children and party with us till morning — the decision is yours.",
+    // FAQ question about children removed from UI; leaving keys empty to avoid unused content surfacing
+    faq_1_q: "",
+    faq_1_a: "",
     faq_2_q: "Is there parking?",
     faq_2_a: "Yes — we’ll share detailed directions and parking info closer to the date.",
     // The third FAQ slot is unused; leaving it blank to avoid old content
     faq_3_q: "",
     faq_3_a: "",
     faq_4_q: "RSVP deadline?",
-    faq_4_a: "Please RSVP by 28 February 2026.",
+    // Update RSVP deadline answer: encourage people to confirm attendance quickly, by 30 June 2026
+    faq_4_a: "Please confirm your attendance as soon as possible, and no later than 30 June 2026.",
 
-    footer_made: "See you on"
+    footer_made: "See you on",
+    // Invitation line at the top of the hero section (large text above "Save the date")
+    hero_invite: "YOU ARE INVITED TO OUR WEDDING!",
+    // Label for the "add to calendar" link in the When card
+    details_when_calendar_link: "Add to calendar"
   }
 };
 
@@ -239,8 +264,13 @@ function applyConfig(){
   const mapsLinkEl = document.getElementById('mapsLink');
   if(mapsLinkEl) mapsLinkEl.href = CONFIG.mapsUrl;
 
-  // contacts
-  setText("contactPhone", CONFIG.contactPhone);
+  // contacts: update phone lines individually. The contact phone string contains both
+  // numbers separated by a middle dot (·). We split it and assign to the Ewelina
+  // and Bartek spans. If additional numbers are added in CONFIG, only the first
+  // two will be used.
+  const phoneParts = CONFIG.contactPhone.split("·").map(p => p.trim());
+  if(phoneParts.length > 0) setText("contactPhoneEwelina", phoneParts[0]);
+  if(phoneParts.length > 1) setText("contactPhoneBartek", phoneParts[1]);
   setText("contactEmail", CONFIG.contactEmail);
   const ce = document.getElementById("contactEmail");
   if(ce && ce.tagName === "A") ce.href = "mailto:" + CONFIG.contactEmail;

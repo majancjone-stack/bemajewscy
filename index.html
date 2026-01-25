@@ -24,7 +24,7 @@
 <span class="mark__line"></span>
 </div>
 <nav aria-label="Primary" class="topnav">
-<a class="topnav__link" data-i18n="nav_rsvp" href="#rsvp">RSVP</a>
+<a class="topnav__link" data-i18n="nav_rsvp" href="#rsvp">Potwierdź obecność</a>
 <a class="topnav__link" data-i18n="nav_details" href="#details">Szczegóły</a>
 <a class="topnav__link" data-i18n="nav_faq" href="#faq">FAQ</a>
 </nav>
@@ -43,6 +43,8 @@
   <div class="wrap">
     <!-- card frame holds the hero contents and provides a border, rounded corners and light backdrop -->
     <div class="hero__frame">
+      <!-- Invitation line above the save‑the‑date notice -->
+      <p class="hero__invite" data-i18n="hero_invite">ZAPRASZAMY NA WESELE!</p>
       <p class="eyebrow" data-i18n="hero_eyebrow">SAVE THE DATE</p>
       <h1 class="h1" id="coupleNames">Bartek &amp; Ewelina</h1>
       <p class="hero__meta">
@@ -85,7 +87,7 @@
 <section class="section section--alt" id="rsvp">
 <div class="wrap">
 <div class="section__head">
-<h2 class="h2" data-i18n="rsvp_title">RSVP</h2>
+<h2 class="h2" data-i18n="rsvp_title">Potwierdź obecność</h2>
 </div>
 <div class="rsvp">
   <!-- Custom RSVP form -->
@@ -160,36 +162,39 @@
     <input id="langField" name="lang" type="hidden" value="pl">
     <!-- submit button -->
     <div class="form__actions">
-      <button class="btn" data-i18n="form_submit" type="submit">Wyślij RSVP</button>
+      <button class="btn" data-i18n="form_submit" type="submit">Wyślij potwierdzenie</button>
     </div>
     <div aria-live="polite" class="form__status" id="formStatus" role="status"></div>
   </form>
   <aside class="rsvp__side">
-  <div class="panel panel--tight">
+    <div class="panel panel--tight">
   <h3 class="h3" data-i18n="rsvp_side_title">Szybkie info</h3>
-  <ul class="bullets">
+    <ul class="bullets">
     <!-- quick info items translated via i18n keys -->
     <li data-i18n="rsvp_side_1"></li>
     <!-- new quick info item asking guests to confirm the number of adults and children -->
     <li data-i18n="rsvp_side_add"></li>
     <li data-i18n="rsvp_side_2"></li>
-    <li data-i18n="rsvp_side_3"></li>
-  </ul>
+    <!-- Removed the fourth bullet about an adults‑only celebration to avoid duplication with FAQ -->
+    </ul>
   </div>
   <div class="panel panel--tight mt">
   <h3 class="h3" data-i18n="contacts_title">Kontakt</h3>
-  <p class="contacts">
-  <div class="contacts__item">
-  <span aria-hidden="true" class="contacts__icon">📞</span>
-  <span class="contacts__label" data-i18n="contacts_k1">Telefon:</span>
-  <span class="contacts__value" id="contactPhone">Ewelina: +48 515 754 720 · Bartek: +48 784 032 813</span>
+  <div class="contacts">
+    <div class="contacts__item">
+      <span aria-hidden="true" class="contacts__icon">📞</span>
+      <span class="contacts__label" data-i18n="contacts_k1">Telefon:</span>
+      <span class="contacts__value">
+        <span id="contactPhoneEwelina">Ewelina: +48 515 754 720</span><br/>
+        <span id="contactPhoneBartek">Bartek: +48 784 032 813</span>
+      </span>
+    </div>
+    <div class="contacts__item">
+      <span aria-hidden="true" class="contacts__icon">✉️</span>
+      <span class="contacts__label" data-i18n="contacts_k2">E-mail:</span>
+      <a class="contacts__value" href="mailto:BEMajewscy@gmail.com" id="contactEmail">BEMajewscy@gmail.com</a>
+    </div>
   </div>
-  <div class="contacts__item">
-  <span aria-hidden="true" class="contacts__icon">✉️</span>
-  <span class="contacts__label" data-i18n="contacts_k2">E-mail:</span>
-  <a class="contacts__value" href="mailto:BEMajewscy@gmail.com" id="contactEmail">BEMajewscy@gmail.com</a>
-  </div>
-  </p>
   </div>
   </aside>
   </div>
@@ -207,13 +212,17 @@
         <p class="card__big" id="dateShort">21.08.2026</p>
         <!-- update description to explicitly invite guests to a garden ceremony at 16:00 -->
         <p class="muted" data-i18n="details_when_text">Zapraszamy na Ceremonię w ogrodzie Pałacu o godzinie 16:00</p>
+        <!-- Add to calendar link: allows guests to save the event with start and end times and location -->
+        <p class="card__actions">
+          <a class="link" data-i18n="details_when_calendar_link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Bartek%20i%20Ewelina%20—%20Wesele&amp;dates=20260821T133000Z%2F20260822T020000Z&amp;location=Nadarzy%C5%84ska+21%2C+05-807+%C5%BB%C3%B3%C5%82win&amp;details=Zapraszamy+na+wesele!" target="_blank" rel="noopener noreferrer">Dodaj do kalendarza</a>
+        </p>
       </article>
       <!-- Where card -->
       <article class="card card--centered">
         <h3 class="h3" data-i18n="details_where_title">Gdzie</h3>
         <p class="card__big">Pałac Żółwin</p>
         <!-- updated text about the palace -->
-        <p class="muted" data-i18n="details_where_text">XIX-wieczny późnoklasycystyczny pałac ok. 30 minut od Warszawy.</p>
+        <p class="muted" data-i18n="details_where_text">XIX-wieczny późnoklasycystyczny pałac ok. 30 minut od Warszawy</p>
         <!-- Removed "Otwórz mapę" link per updated requirements -->
       </article>
       <!-- Map card -->
@@ -262,13 +271,12 @@
 <div class="wrap">
 <div class="section__head">
 <h2 class="h2" data-i18n="faq_title">FAQ</h2>
+<!-- Subtitle under the FAQ heading explaining that this section contains commonly asked questions -->
+<p class="muted small" data-i18n="faq_subtitle"></p>
 </div>
 <div class="faq">
+<!-- Removed the first FAQ about children to keep the section concise -->
 <details class="faq__item" open="">
-  <summary data-i18n="faq_1_q"></summary>
-  <p data-i18n="faq_1_a"></p>
-</details>
-<details class="faq__item">
   <summary data-i18n="faq_2_q"></summary>
   <p data-i18n="faq_2_a"></p>
 </details>
