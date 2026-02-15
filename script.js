@@ -98,8 +98,8 @@ const I18N = {
     form_submit: "Wyślij potwierdzenie",
     // form_privacy removed (not used in markup)
     rsvp_side_title: "Szybkie info",
-    // First quick note: encourage early confirmation with new deadline of 30 June 2026
-    rsvp_side_1: "Prosimy o potwierdzenie swojej obecności jak najszybciej, najpóźniej do 30 czerwca 2026.",
+    // First quick note: encourage early confirmation with new deadline of 1 June 2026
+    rsvp_side_1: "Prosimy o potwierdzenie swojej obecności jak najszybciej, najpóźniej do 1 czerwca 2026.",
     // New quick info explaining that guests should confirm attendance for themselves and their families
     rsvp_side_add: "Prosimy o potwierdzenie obecności w swoim imieniu oraz osoby towarzyszącej/ rodziny, poprzez wskazanie ilości osób dorosłych oraz dzieci.",
     // Quick info: third point instructs guests to list allergies, special needs as well as children's age and diet in the notes
@@ -125,9 +125,9 @@ const I18N = {
     faq_3_q: "",
     faq_3_a: "",
     // RSVP deadline question and answer
-    faq_4_q: "Do kiedy RSVP?",
-    // Update RSVP deadline answer: encourage people to confirm attendance quickly, by 30 June 2026
-    faq_4_a: "Prosimy o potwierdzenie obecności jak najszybciej, najpóźniej do 30 czerwca 2026.",
+    faq_4_q: "Do kiedy potwierdzenie obecności?",
+    // Update RSVP deadline answer: encourage people to confirm attendance quickly, by 1 June 2026
+    faq_4_a: "Prosimy o potwierdzenie obecności jak najszybciej, najpóźniej do 1 czerwca 2026.",
 
     footer_made: "Widzimy się",
     // Invitation line at the top of the hero section (large text above "Save the date")
@@ -208,8 +208,8 @@ const I18N = {
     form_submit: "Send confirmation",
     // form_privacy removed (not used in markup)
     rsvp_side_title: "Quick notes",
-    // First quick note: encourage early confirmation with new deadline of 30 June 2026
-    rsvp_side_1: "Please confirm your attendance as soon as possible, and no later than 30 June 2026.",
+    // First quick note: encourage early confirmation with new deadline of 1 June 2026
+    rsvp_side_1: "Please confirm your attendance as soon as possible, and no later than 1 June 2026.",
     // Third point instructs guests to list allergies, special needs and children's age and diet in the notes
     rsvp_side_2: "Please include any allergies, special needs, children's ages and diet in \u201cNotes\u201d.",
     // Fourth point encourages an adults‑only celebration
@@ -235,8 +235,8 @@ const I18N = {
     faq_3_q: "",
     faq_3_a: "",
     faq_4_q: "RSVP deadline?",
-    // Update RSVP deadline answer: encourage people to confirm attendance quickly, by 30 June 2026
-    faq_4_a: "Please confirm your attendance as soon as possible, and no later than 30 June 2026.",
+    // Update RSVP deadline answer: encourage people to confirm attendance quickly, by 1 June 2026
+    faq_4_a: "Please confirm your attendance as soon as possible, and no later than 1 June 2026.",
 
     footer_made: "See you on",
     // Invitation line at the top of the hero section (large text above "Save the date")
